@@ -18,12 +18,21 @@ firebase.initializeApp({
   appId: "1:894365284124:web:5625f80465f63a136d6cd9"
 });
 
+
+if (window.location.hostname === "localhost") {
+  firebaseConfig.authDomain = "localhost";
+  firebaseConfig.authEmulatorHost = "http://localhost:9099";
+}
+
+
+
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 const analytics = firebase.analytics();
 
 function App() {
   const [user] = useAuthState(auth);
+  console.log(user);
 
   return (
     <div className="App">
